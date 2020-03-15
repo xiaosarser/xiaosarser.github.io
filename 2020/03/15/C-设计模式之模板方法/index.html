@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xiaosarser.github.io">
-  <title>Archives: 2020/3 | xiaosa</title>
+  <title>C++设计模式之模板方法 | xiaosa</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="xiaosa">
-<meta property="og:url" content="https://xiaosarser.github.io/archives/2020/03/index.html">
+  <meta name="description" content="模板方法是一种行为型设计模式，它的的意图是定义一个程序的整体框架和流程，而把有些方法的具体实现去留给子类来实现。既试图让父类去调用子类的方法，例如在搭建房子的时候，我们首先构建房子的整体结构框架而把某些例如房间装修之类的留到最后。模板方法可以使得子类在不改变一个算法结构的情况下就可以重定义算法的某些特定步骤。模板方法适用于一次性实现算法的不变部分，而将可变的行为留给子类去实现。各个子类的公共行为应">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++设计模式之模板方法">
+<meta property="og:url" content="https://xiaosarser.github.io/2020/03/15/C-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="xiaosa">
+<meta property="og:description" content="模板方法是一种行为型设计模式，它的的意图是定义一个程序的整体框架和流程，而把有些方法的具体实现去留给子类来实现。既试图让父类去调用子类的方法，例如在搭建房子的时候，我们首先构建房子的整体结构框架而把某些例如房间装修之类的留到最后。模板方法可以使得子类在不改变一个算法结构的情况下就可以重定义算法的某些特定步骤。模板方法适用于一次性实现算法的不变部分，而将可变的行为留给子类去实现。各个子类的公共行为应">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-15T12:46:05.000Z">
+<meta property="article:modified_time" content="2020-03-15T12:51:44.549Z">
 <meta property="article:author" content="xiaosa">
 <meta name="twitter:card" content="summary">
   
@@ -150,76 +154,164 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-C-设计模式之模板方法" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      C++设计模式之模板方法
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/15/C-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/" class="archive-article-date">
+
+        
+        <a href="/2020/03/15/C-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/" class="archive-article-date">
   	<time datetime="2020-03-15T12:46:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-15</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/15/C-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/">C++设计模式之模板方法</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>模板方法是一种行为型设计模式，它的的意图是定义一个程序的整体框架和流程，而把有些方法的具体实现去留给子类来实现。既试图让父类去调用子类的方法，例如在搭建房子的时候，我们首先构建房子的整体结构框架而把某些例如房间装修之类的留到最后。模板方法可以使得子类在不改变一个算法结构的情况下就可以重定义算法的某些特定步骤。<br>模板方法适用于一次性实现算法的不变部分，而将可变的行为留给子类去实现。各个子类的公共行为应当被提取到父类中以避免代码重复。举个简单的例子，在购买东西的时候，我们一般可以分为三个步骤，拿东西，付钱，打包，那东西和打包的过程都是通用的，而付钱这个过程有可能付美元，有可能付人民币。在流程确定且具有公共方法的情况下，可以提取公共方法到父类，把付钱这个动作留给子类实现，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">class buyGift</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">    buyGift()&#123;&#125;</span><br><span class="line">    void giveGift()</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;&quot;give a gift&quot;&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    void package()</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;&quot;package a gift&quot;&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">public:</span><br><span class="line">    virtual void payMoney()&#123;&#125;</span><br><span class="line">public:</span><br><span class="line">    void processOrder()</span><br><span class="line">    &#123;</span><br><span class="line">        giveGift();</span><br><span class="line">        payMoney();</span><br><span class="line">        package();</span><br><span class="line">    &#125;</span><br><span class="line">    ~buyGift()&#123;&#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class chineseBuyer:public buyGift</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">    chineseBuyer()&#123;&#125;</span><br><span class="line">    void payMoney()</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;&quot;I pay RMB&quot;&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    ~chineseBuyer()&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class AmericanBuyer:public buyGift</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">    AmericanBuyer()&#123;&#125;</span><br><span class="line">    void payMoney()</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;&quot;I pay dollars&quot;&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    ~AmericanBuyer()&#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>父类是buyGift,两个子类chineseBuyer 和AmericanBuyer继承父类，父类的payMoney被写成了虚方法留给子类实现。这样如果我们在主函数中执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">buyGift* a&#x3D;new chineseBuyer();</span><br><span class="line">a-&gt;processOrder();</span><br></pre></td></tr></table></figure>
+<p>就会打印出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">give a gift</span><br><span class="line">I pay RMB</span><br><span class="line">package a gift</span><br></pre></td></tr></table></figure>
+<p>如果执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">buyGift* a&#x3D;new AmericanBuyer();</span><br><span class="line">a-&gt;processOrder();</span><br></pre></td></tr></table></figure>
+<p>就会打印出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">give a gift</span><br><span class="line">I pay dollars</span><br><span class="line">package a gift</span><br></pre></td></tr></table></figure>
+      
 
-        <div class="article-info info-on-right">
-          
-          
-
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://xiaosarser.github.io/2020/03/15/C-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/14/hello-world/" class="archive-article-date">
-  	<time datetime="2020-03-14T14:03:04.368Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-14</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/14/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/14/hello-world/">Hello World</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -242,8 +334,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
