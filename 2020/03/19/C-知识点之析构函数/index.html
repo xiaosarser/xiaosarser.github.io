@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xiaosarser.github.io">
-  <title>C++知识点之构造函数 | xiaosa</title>
+  <title>C++知识点之析构函数 | xiaosa</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="构造函数是什么？构造函数是C++类用来实例化对象的特殊成员函数。在C++中，当创造类的实例化对象的时候构造函数会被自动调用。和普通的成员函数相比，构造函数没有返回值，构造函数的函数名和类名一致。当程序没有指定构造函数的时候，编译器会自动合成无参的构造函数。C++大致有一下集中构造函数，默认构造函数，参数化构造函数，委托构造函数，拷贝构造函数，移动构造函数。1：默认构造函数在C++中，默认构造函数指">
+  <meta name="description" content="类的析构函数是类的一种特殊的成员函数，它会在每次删除所创建的对象时执行。在以下称三种情况下会调用类的析构函数。1：对象生命周期结束，被销毁时。2：主动调用delete 。3：对象i是对象o的成员，o的析构函数被调用时，对象i的析构函数也被调用。在第二种情况下，如果是new的对象，必须主动析构掉，否则，类的指针在离开作用域以后被析构掉但是其开辟的空间还没有被被回收会造成内存泄漏。例如： 123456">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C++知识点之构造函数">
-<meta property="og:url" content="https://xiaosarser.github.io/2020/03/19/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:title" content="C++知识点之析构函数">
+<meta property="og:url" content="https://xiaosarser.github.io/2020/03/19/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="xiaosa">
-<meta property="og:description" content="构造函数是什么？构造函数是C++类用来实例化对象的特殊成员函数。在C++中，当创造类的实例化对象的时候构造函数会被自动调用。和普通的成员函数相比，构造函数没有返回值，构造函数的函数名和类名一致。当程序没有指定构造函数的时候，编译器会自动合成无参的构造函数。C++大致有一下集中构造函数，默认构造函数，参数化构造函数，委托构造函数，拷贝构造函数，移动构造函数。1：默认构造函数在C++中，默认构造函数指">
+<meta property="og:description" content="类的析构函数是类的一种特殊的成员函数，它会在每次删除所创建的对象时执行。在以下称三种情况下会调用类的析构函数。1：对象生命周期结束，被销毁时。2：主动调用delete 。3：对象i是对象o的成员，o的析构函数被调用时，对象i的析构函数也被调用。在第二种情况下，如果是new的对象，必须主动析构掉，否则，类的指针在离开作用域以后被析构掉但是其开辟的空间还没有被被回收会造成内存泄漏。例如： 123456">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-19T07:17:05.000Z">
-<meta property="article:modified_time" content="2020-03-19T07:17:22.348Z">
+<meta property="article:published_time" content="2020-03-19T15:25:41.000Z">
+<meta property="article:modified_time" content="2020-03-19T15:28:50.268Z">
 <meta property="article:author" content="xiaosa">
+<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="xiaosa" type="application/atom+xml">
@@ -154,45 +155,33 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-C-知识点之构造函数" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-C-知识点之析构函数" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      C++知识点之构造函数
+      C++知识点之析构函数
     </h1>
   
 
         
-        <a href="/2020/03/19/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" class="archive-article-date">
-  	<time datetime="2020-03-19T07:17:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-19</time>
+        <a href="/2020/03/19/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/" class="archive-article-date">
+  	<time datetime="2020-03-19T15:25:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>构造函数是什么？构造函数是C++类用来实例化对象的特殊成员函数。在C++中，当创造类的实例化对象的时候构造函数会被自动调用。和普通的成员函数相比，构造函数没有返回值，构造函数的函数名和类名一致。当程序没有指定构造函数的时候，编译器会自动合成无参的构造函数。C++大致有一下集中构造函数，默认构造函数，参数化构造函数，委托构造函数，拷贝构造函数，移动构造函数。<br>1：默认构造函数<br>在C++中，默认构造函数指的是一个能被无参调用（包含参数有默认值的函数）的函数，包括自己定义的默认构造函数和编译器合成的默认构造函数，例如在下面的代码中。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Construct</span><br><span class="line">&#123;</span><br><span class="line">    Construct()&#123;&#125;&#x2F;&#x2F;默认构造函数</span><br><span class="line">    Construct(int i&#x3D;0,int j&#x3D;0)&#123;&#125;&#x2F;&#x2F;默认构造函数</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>两个构造函数一个是无参的，一个是有参但是参数有默认值的，都是默认的构造函数。如果类的设计者没有写任何的构造函数，那么编译器一定会合成默认的构造函数吗？不是的，只有当编译器被需要的时候才会合成默认的构造函数。关于什么时候被需要，这里不展开写，总结起来就是调用对象成员或基类的默认构造函数或者 为对象初始化虚表指针与虚基类指针。<br>2：带参构造函数<br>带参数的构造函数可以用来初始化类的成员变量，例如下面的代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Construct</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">    Construct(int i):num(i)&#123;&#125;</span><br><span class="line">public:</span><br><span class="line">    int num;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>当利用带参构造函数实例化对象的时候类的成员也被初始化了。<br>3：委托构造函数<br>在C++primer的定义中，一个委托构造函数使用它所属的类的其他构造函数执行自己的初始化过程，或者说它把自己的一些（或者全部）职责委托给了其他构造函数。一个委托构造函数应该有着最大数量的参数以构造出完整的对象。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class A</span><br><span class="line">&#123;</span><br><span class="line">private:</span><br><span class="line">    int a;</span><br><span class="line">    int b;</span><br><span class="line">    char c;</span><br><span class="line"> public:</span><br><span class="line">    A(int num1,int num2,int c1):a(num1),b(num2),c(c1)&#123;&#125;</span><br><span class="line">    A(int num1,char c1):A(num1,0,c1)&#123;&#125;&#x2F;&#x2F;委托上一个构造函数</span><br><span class="line">    A(int num0):A(num0,&#39;&#39;)&#123;&#125;&#x2F;&#x2F;委托上一个构造函数</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>注意，被委托的构造函数应该具有最大数量的参数。委托构造函数的作用是目的是简化构造函数的书写，提高代码的可维护性，避免代码冗余膨胀。<br>4：拷贝构造函数<br>拷贝构造函数是一种特殊的构造函数，它在创建对象时，是使用同一类中之前创建的对象来初始化新创建的对象。构造函数的原型是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ClassName (const ClassName &amp;old_obj);</span><br></pre></td></tr></table></figure>
-<p> 下面是一个简单的拷贝构造函数的例子</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class Point</span><br><span class="line">&#123;</span><br><span class="line">private:</span><br><span class="line">    int x;</span><br><span class="line">    int y;</span><br><span class="line">public:</span><br><span class="line">    Point(int x1,int y1):x(x1),y(y1)&#123;&#125;</span><br><span class="line">    Point(const Point&amp; p2)</span><br><span class="line">    &#123;</span><br><span class="line">        x&#x3D;p2.x;</span><br><span class="line">        y&#x3D;p2.y;</span><br><span class="line">    &#125;</span><br><span class="line">    int getX()</span><br><span class="line">    &#123;</span><br><span class="line">        return x;</span><br><span class="line">    &#125;</span><br><span class="line">    int getY()</span><br><span class="line">    &#123;</span><br><span class="line">        return y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">int main(void) </span><br><span class="line">&#123; </span><br><span class="line">    Point p1(10,5);</span><br><span class="line">    Point p2(p1);</span><br><span class="line">    cout&lt;&lt;p2.getX()&lt;&lt;&quot; &quot;&lt;&lt;p2.getY()&lt;&lt;endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在该例子中用Point的实例化对象p1去初始化p2。那么在C++中，什么时候会调用拷贝构造函数呢？<br>在C++中，在以下4中情况下会调用拷贝构造函数：<br>1：当类的对象由值返回时。<br>2：当类的对象被当成参数传递给函数时<br>3：当一个对象基于相同类的另一个对象构造时。<br>4：当编译器产生一个临时对象时。<br>什么时候需要用户定义的拷贝构造函数？如果没有用户定义的拷贝构造函数，编译器通常会合成默认的拷贝构造函数用来在对象之间进行成员拷贝。当一个对象有指针或者任何运行时分配的资源例如文件句柄和网络连接的时候才需要用户定义的拷贝欸构造函数。编译器默认的合成拷贝构造函数通常是浅拷贝，只有用户定义的拷贝构造函数才是深拷贝。<br>5：拷贝与赋值运算符<br>拷贝构造发生在初始化对象的时候发生，如果对象已经初始化了，只是要给他一个新的值，那么即使赋值操作而不是拷贝操作来了，例如下面的例子</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MyClass t1, t2; </span><br><span class="line">MyClass t3 &#x3D; t1;  &#x2F;&#x2F; ----&gt; (1) </span><br><span class="line">t2 &#x3D; t1;          &#x2F;&#x2F; -----&gt; (2)</span><br></pre></td></tr></table></figure>
-<p>1是拷贝，2是赋值操作。下面通过一个例子说明拷贝构造函数为什么必须是引用类型；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">class Point</span><br><span class="line">&#123;</span><br><span class="line">private:</span><br><span class="line">    int x;</span><br><span class="line">    int y;</span><br><span class="line">public:</span><br><span class="line">    Point()</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;&quot;构造对象&quot;&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    Point(const Point&amp; p2)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;&quot;调用拷贝构造函数&quot;&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    void fun(Point p1)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;&quot;对象作为参数传递给函数&quot;&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int main(void) </span><br><span class="line">&#123; </span><br><span class="line">    Point p1;</span><br><span class="line">    Point p2(p1);</span><br><span class="line">    p2.fun(p1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>程序输出的结果是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">构造对象</span><br><span class="line">调用拷贝构造函数</span><br><span class="line">调用拷贝构造函数</span><br><span class="line">对象作为参数传递给函数</span><br></pre></td></tr></table></figure>
-<p>首先来分析一下Point(const Point&amp; p2)；和Point p2(p1);这句话，吐过不是传引用的话，那么他的 含义其实是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Point p2&#x3D;p1;</span><br></pre></td></tr></table></figure>
-<p>由于p2并没有被构造出来，所以又会调用构造函数来进行构造造成程序无止境递归从而造成程序崩溃。<br>5：移动构造函数<br> 参见<a href="https://www.jianshu.com/p/cb82c8b72c6b" target="_blank" rel="noopener">https://www.jianshu.com/p/cb82c8b72c6b</a></p>
+        <p>类的析构函数是类的一种特殊的成员函数，它会在每次删除所创建的对象时执行。在以下称三种情况下会调用类的析构函数。<br>1：对象生命周期结束，被销毁时。<br>2：主动调用delete 。<br>3：对象i是对象o的成员，o的析构函数被调用时，对象i的析构函数也被调用。<br>在第二种情况下，如果是new的对象，必须主动析构掉，否则，类的指针在离开作用域以后被析构掉但是其开辟的空间还没有被被回收会造成内存泄漏。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Person</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">    Person()&#123;&#125;</span><br><span class="line">private:</span><br><span class="line">    Person(const Person&amp; p);</span><br><span class="line">    Person&amp; operator&#x3D;(const Person&amp; p);</span><br><span class="line">&#125;;</span><br><span class="line">Person::Person(const Person&amp; p)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">void fun()</span><br><span class="line">&#123;</span><br><span class="line">    Person* p1&#x3D;new Person();</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">   fun();</span><br><span class="line">   return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>fun函数在调用p1指针以后如果不主动delete,则其指向的内存会得不到释放，造成内存泄漏。<br>在类中，析构过程是逆序析构的，也就是先销毁子类对象，再销毁父类对象。如果有多重继承，按照继承的顺序，从右到左析构，例如下面的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">class Person</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">    Person()&#123;&#125;</span><br><span class="line">    ~Person()</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;&quot;销毁Person&quot;&lt;&lt;endl;</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;;</span><br><span class="line">class Food</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">    Food(int type &#x3D; 10)</span><br><span class="line">    &#123;</span><br><span class="line">        m_type &#x3D; 10;</span><br><span class="line">    &#125;</span><br><span class="line">    Food(Food &amp;other)                 &#x2F;&#x2F;拷贝构造函数</span><br><span class="line">    &#123;</span><br><span class="line">        m_type &#x3D; other.m_type;</span><br><span class="line">    &#125;</span><br><span class="line">    Food &amp; operator &#x3D;(Food &amp;other)      &#x2F;&#x2F;重载赋值&#x3D;函数</span><br><span class="line">    &#123;</span><br><span class="line">        m_type &#x3D; other.m_type;</span><br><span class="line">        return *this;</span><br><span class="line">    &#125;</span><br><span class="line">    ~Food()</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;&quot;销毁food&quot;&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">private:</span><br><span class="line">    int m_type;</span><br><span class="line">&#125;;</span><br><span class="line">class A1</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">    A1()&#123;&#125;</span><br><span class="line">    ~A1()</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;&quot;销毁A&quot;&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Worker:Food,Person,A1</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">    Worker()&#123;&#125;</span><br><span class="line">    ~Worker()</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;&quot;销毁Worker&quot;&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>代码执行的结果是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">销毁Worker</span><br><span class="line">销毁A</span><br><span class="line">销毁Person</span><br><span class="line">销毁food</span><br></pre></td></tr></table></figure>
+<p>需要将基类的析构函数设置成虚函数，不要把不被继承的类的析构函数设置成虚函数。当派生类对象经由一个基类指针被删除，而该基类带有一个non-virtual析构函数，结果未定义——实际执行时通常发生的是对象的derived成分没有销毁，即“局部销毁”，造成资源泄露（因为存在这个问题，所以不要继承一个不被用作基类的类），当派生类对象经由一个基类指针被删除，而该基类带有一个non-virtual析构函数，结果未定义——实际执行时通常发生的是对象的derived成分没有销毁，即“局部销毁”，造成资源泄露（因为存在这个问题，所以不要继承一个不被用作基类的类）。</p>
 
       
 
@@ -222,6 +211,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -272,7 +272,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://xiaosarser.github.io/2020/03/19/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://xiaosarser.github.io/2020/03/19/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -286,18 +286,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/03/19/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/03/19/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9B%B8%E5%85%B3/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          C++知识点之析构函数
+          C++知识点之赋值运算符相关
         
       </div>
     </a>
   
   
-    <a href="/2020/03/18/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E5%8F%98%E9%87%8F/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">C++知识点之变量</div>
+    <a href="/2020/03/19/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++知识点之构造函数</div>
       <i class="icon-circle-right"></i>
     </a>
   

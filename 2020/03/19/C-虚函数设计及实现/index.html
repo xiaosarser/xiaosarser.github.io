@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xiaosarser.github.io">
-  <title>C++知识点之构造函数 | xiaosa</title>
+  <title>C++虚函数设计及实现 | xiaosa</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="构造函数是什么？构造函数是C++类用来实例化对象的特殊成员函数。在C++中，当创造类的实例化对象的时候构造函数会被自动调用。和普通的成员函数相比，构造函数没有返回值，构造函数的函数名和类名一致。当程序没有指定构造函数的时候，编译器会自动合成无参的构造函数。C++大致有一下集中构造函数，默认构造函数，参数化构造函数，委托构造函数，拷贝构造函数，移动构造函数。1：默认构造函数在C++中，默认构造函数指">
+  <meta name="description" content="重载机制是C++编译时多态的表现形式之一，具体表现为函数名称相同但是传入的参数不同，编译器根据具体的参数执行相应的函数。如果传入非常量或者指向非常量的指针，重载的函数都能调用，但是对于编译器优先选择非const版本传入常量或指向常量的指针时，只能选择const版本。特别的，当函数里面有同名函数时候函数外部的函数会被隐藏。我们在使用函数重载的时候要特别注意，必须要把需要重载的函数的声明写在一起在同一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C++知识点之构造函数">
-<meta property="og:url" content="https://xiaosarser.github.io/2020/03/19/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:title" content="C++虚函数设计及实现">
+<meta property="og:url" content="https://xiaosarser.github.io/2020/03/19/C-%E8%99%9A%E5%87%BD%E6%95%B0%E8%AE%BE%E8%AE%A1%E5%8F%8A%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="xiaosa">
-<meta property="og:description" content="构造函数是什么？构造函数是C++类用来实例化对象的特殊成员函数。在C++中，当创造类的实例化对象的时候构造函数会被自动调用。和普通的成员函数相比，构造函数没有返回值，构造函数的函数名和类名一致。当程序没有指定构造函数的时候，编译器会自动合成无参的构造函数。C++大致有一下集中构造函数，默认构造函数，参数化构造函数，委托构造函数，拷贝构造函数，移动构造函数。1：默认构造函数在C++中，默认构造函数指">
+<meta property="og:description" content="重载机制是C++编译时多态的表现形式之一，具体表现为函数名称相同但是传入的参数不同，编译器根据具体的参数执行相应的函数。如果传入非常量或者指向非常量的指针，重载的函数都能调用，但是对于编译器优先选择非const版本传入常量或指向常量的指针时，只能选择const版本。特别的，当函数里面有同名函数时候函数外部的函数会被隐藏。我们在使用函数重载的时候要特别注意，必须要把需要重载的函数的声明写在一起在同一">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-19T07:17:05.000Z">
-<meta property="article:modified_time" content="2020-03-19T07:17:22.348Z">
+<meta property="article:published_time" content="2020-03-19T15:26:09.000Z">
+<meta property="article:modified_time" content="2020-03-19T15:27:10.461Z">
 <meta property="article:author" content="xiaosa">
+<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="xiaosa" type="application/atom+xml">
@@ -154,45 +155,39 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-C-知识点之构造函数" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-C-虚函数设计及实现" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      C++知识点之构造函数
+      C++虚函数设计及实现
     </h1>
   
 
         
-        <a href="/2020/03/19/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" class="archive-article-date">
-  	<time datetime="2020-03-19T07:17:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-19</time>
+        <a href="/2020/03/19/C-%E8%99%9A%E5%87%BD%E6%95%B0%E8%AE%BE%E8%AE%A1%E5%8F%8A%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
+  	<time datetime="2020-03-19T15:26:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>构造函数是什么？构造函数是C++类用来实例化对象的特殊成员函数。在C++中，当创造类的实例化对象的时候构造函数会被自动调用。和普通的成员函数相比，构造函数没有返回值，构造函数的函数名和类名一致。当程序没有指定构造函数的时候，编译器会自动合成无参的构造函数。C++大致有一下集中构造函数，默认构造函数，参数化构造函数，委托构造函数，拷贝构造函数，移动构造函数。<br>1：默认构造函数<br>在C++中，默认构造函数指的是一个能被无参调用（包含参数有默认值的函数）的函数，包括自己定义的默认构造函数和编译器合成的默认构造函数，例如在下面的代码中。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Construct</span><br><span class="line">&#123;</span><br><span class="line">    Construct()&#123;&#125;&#x2F;&#x2F;默认构造函数</span><br><span class="line">    Construct(int i&#x3D;0,int j&#x3D;0)&#123;&#125;&#x2F;&#x2F;默认构造函数</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>两个构造函数一个是无参的，一个是有参但是参数有默认值的，都是默认的构造函数。如果类的设计者没有写任何的构造函数，那么编译器一定会合成默认的构造函数吗？不是的，只有当编译器被需要的时候才会合成默认的构造函数。关于什么时候被需要，这里不展开写，总结起来就是调用对象成员或基类的默认构造函数或者 为对象初始化虚表指针与虚基类指针。<br>2：带参构造函数<br>带参数的构造函数可以用来初始化类的成员变量，例如下面的代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Construct</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">    Construct(int i):num(i)&#123;&#125;</span><br><span class="line">public:</span><br><span class="line">    int num;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>当利用带参构造函数实例化对象的时候类的成员也被初始化了。<br>3：委托构造函数<br>在C++primer的定义中，一个委托构造函数使用它所属的类的其他构造函数执行自己的初始化过程，或者说它把自己的一些（或者全部）职责委托给了其他构造函数。一个委托构造函数应该有着最大数量的参数以构造出完整的对象。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class A</span><br><span class="line">&#123;</span><br><span class="line">private:</span><br><span class="line">    int a;</span><br><span class="line">    int b;</span><br><span class="line">    char c;</span><br><span class="line"> public:</span><br><span class="line">    A(int num1,int num2,int c1):a(num1),b(num2),c(c1)&#123;&#125;</span><br><span class="line">    A(int num1,char c1):A(num1,0,c1)&#123;&#125;&#x2F;&#x2F;委托上一个构造函数</span><br><span class="line">    A(int num0):A(num0,&#39;&#39;)&#123;&#125;&#x2F;&#x2F;委托上一个构造函数</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>注意，被委托的构造函数应该具有最大数量的参数。委托构造函数的作用是目的是简化构造函数的书写，提高代码的可维护性，避免代码冗余膨胀。<br>4：拷贝构造函数<br>拷贝构造函数是一种特殊的构造函数，它在创建对象时，是使用同一类中之前创建的对象来初始化新创建的对象。构造函数的原型是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ClassName (const ClassName &amp;old_obj);</span><br></pre></td></tr></table></figure>
-<p> 下面是一个简单的拷贝构造函数的例子</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class Point</span><br><span class="line">&#123;</span><br><span class="line">private:</span><br><span class="line">    int x;</span><br><span class="line">    int y;</span><br><span class="line">public:</span><br><span class="line">    Point(int x1,int y1):x(x1),y(y1)&#123;&#125;</span><br><span class="line">    Point(const Point&amp; p2)</span><br><span class="line">    &#123;</span><br><span class="line">        x&#x3D;p2.x;</span><br><span class="line">        y&#x3D;p2.y;</span><br><span class="line">    &#125;</span><br><span class="line">    int getX()</span><br><span class="line">    &#123;</span><br><span class="line">        return x;</span><br><span class="line">    &#125;</span><br><span class="line">    int getY()</span><br><span class="line">    &#123;</span><br><span class="line">        return y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">int main(void) </span><br><span class="line">&#123; </span><br><span class="line">    Point p1(10,5);</span><br><span class="line">    Point p2(p1);</span><br><span class="line">    cout&lt;&lt;p2.getX()&lt;&lt;&quot; &quot;&lt;&lt;p2.getY()&lt;&lt;endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在该例子中用Point的实例化对象p1去初始化p2。那么在C++中，什么时候会调用拷贝构造函数呢？<br>在C++中，在以下4中情况下会调用拷贝构造函数：<br>1：当类的对象由值返回时。<br>2：当类的对象被当成参数传递给函数时<br>3：当一个对象基于相同类的另一个对象构造时。<br>4：当编译器产生一个临时对象时。<br>什么时候需要用户定义的拷贝构造函数？如果没有用户定义的拷贝构造函数，编译器通常会合成默认的拷贝构造函数用来在对象之间进行成员拷贝。当一个对象有指针或者任何运行时分配的资源例如文件句柄和网络连接的时候才需要用户定义的拷贝欸构造函数。编译器默认的合成拷贝构造函数通常是浅拷贝，只有用户定义的拷贝构造函数才是深拷贝。<br>5：拷贝与赋值运算符<br>拷贝构造发生在初始化对象的时候发生，如果对象已经初始化了，只是要给他一个新的值，那么即使赋值操作而不是拷贝操作来了，例如下面的例子</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MyClass t1, t2; </span><br><span class="line">MyClass t3 &#x3D; t1;  &#x2F;&#x2F; ----&gt; (1) </span><br><span class="line">t2 &#x3D; t1;          &#x2F;&#x2F; -----&gt; (2)</span><br></pre></td></tr></table></figure>
-<p>1是拷贝，2是赋值操作。下面通过一个例子说明拷贝构造函数为什么必须是引用类型；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">class Point</span><br><span class="line">&#123;</span><br><span class="line">private:</span><br><span class="line">    int x;</span><br><span class="line">    int y;</span><br><span class="line">public:</span><br><span class="line">    Point()</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;&quot;构造对象&quot;&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    Point(const Point&amp; p2)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;&quot;调用拷贝构造函数&quot;&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    void fun(Point p1)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;&quot;对象作为参数传递给函数&quot;&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int main(void) </span><br><span class="line">&#123; </span><br><span class="line">    Point p1;</span><br><span class="line">    Point p2(p1);</span><br><span class="line">    p2.fun(p1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>程序输出的结果是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">构造对象</span><br><span class="line">调用拷贝构造函数</span><br><span class="line">调用拷贝构造函数</span><br><span class="line">对象作为参数传递给函数</span><br></pre></td></tr></table></figure>
-<p>首先来分析一下Point(const Point&amp; p2)；和Point p2(p1);这句话，吐过不是传引用的话，那么他的 含义其实是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Point p2&#x3D;p1;</span><br></pre></td></tr></table></figure>
-<p>由于p2并没有被构造出来，所以又会调用构造函数来进行构造造成程序无止境递归从而造成程序崩溃。<br>5：移动构造函数<br> 参见<a href="https://www.jianshu.com/p/cb82c8b72c6b" target="_blank" rel="noopener">https://www.jianshu.com/p/cb82c8b72c6b</a></p>
+        <p>重载机制是C++编译时多态的表现形式之一，具体表现为函数名称相同但是传入的参数不同，编译器根据具体的参数执行相应的函数。如果传入非常量或者指向非常量的指针，重载的函数都能调用，但是对于编译器优先选择非const版本传入常量或指向常量的指针时，只能选择const版本。特别的，当函数里面有同名函数时候函数外部的函数会被隐藏。我们在使用函数重载的时候要特别注意，必须要把需要重载的函数的声明写在一起在同一个作用域中，要么都在全局，要么都在局部，要是在不同作用域就不会发生重载。</p>
+<p>1：重载与作用域</p>
+<p>先看看正常的重载是怎么实现的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">void  print(const string&amp; str);</span><br><span class="line"></span><br><span class="line">void  print(int val);</span><br><span class="line"></span><br><span class="line">void  print(double val);&#x2F;&#x2F;三个重载函数的声明</span><br><span class="line"></span><br><span class="line">void  print(const string&amp; str)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    cout&lt;&lt;str&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void print(int val)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    cout&lt;&lt;val&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void print(double val)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    cout&lt;&lt;val&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(void) </span><br><span class="line"></span><br><span class="line">&#123; </span><br><span class="line"></span><br><span class="line">   print(&quot;qwer&quot;);</span><br><span class="line"></span><br><span class="line">   print(1);</span><br><span class="line"></span><br><span class="line">   print(2.3);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果我们用一个在函数里面声明新的函数去屏蔽原有的函数，例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int main(void) </span><br><span class="line"></span><br><span class="line">&#123; </span><br><span class="line"></span><br><span class="line">   void print(int a);</span><br><span class="line"></span><br><span class="line">   print(&quot;qwer&quot;);</span><br><span class="line"></span><br><span class="line">   print(1);</span><br><span class="line"></span><br><span class="line">   print(2.3);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在函数里面新声明的函数会屏蔽掉传入string 参数的函数，会提示无法将string 类型转换为int 类型的错误。必须指出，在函数里面声明新的函数是非常不明智的做法，必须丢到这种习惯。</p>
+<p>2：继承中的重载</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class A</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line"></span><br><span class="line">    A()&#123;&#125;</span><br><span class="line"></span><br><span class="line">    virtual ~A()&#123;&#125;</span><br><span class="line"></span><br><span class="line">    void print(string&amp; str)</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">        cout&lt;&lt;str&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class B:A</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line"></span><br><span class="line">    B()&#123;&#125;</span><br><span class="line"></span><br><span class="line">    ~B()&#123;&#125;</span><br><span class="line"></span><br><span class="line">    void print(int a)</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">        cout&lt;&lt;a&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void test()</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">        string a&#x3D;&quot;123&quot;;</span><br><span class="line"></span><br><span class="line">        print(a);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，在基类和派生类中定义两个参数不同的函数时候，基类中的重载函数将会被屏蔽。如果加上虚函数，那就是常见的运行时多态了。所以结论是，重载必须发生在同一个作用域中否则就会覆盖或者屏蔽。</p>
 
       
 
@@ -222,6 +217,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -272,7 +278,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://xiaosarser.github.io/2020/03/19/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://xiaosarser.github.io/2020/03/19/C-%E8%99%9A%E5%87%BD%E6%95%B0%E8%AE%BE%E8%AE%A1%E5%8F%8A%E5%AE%9E%E7%8E%B0/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -286,18 +292,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/03/19/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/03/19/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          C++知识点之析构函数
+          C++知识点之函数重载
         
       </div>
     </a>
   
   
-    <a href="/2020/03/18/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E5%8F%98%E9%87%8F/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">C++知识点之变量</div>
+    <a href="/2020/03/19/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9B%B8%E5%85%B3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++知识点之赋值运算符相关</div>
       <i class="icon-circle-right"></i>
     </a>
   
