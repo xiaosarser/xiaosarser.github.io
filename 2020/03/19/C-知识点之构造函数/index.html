@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xiaosarser.github.io">
-  <title>xiaosa</title>
+  <title>C++知识点之构造函数 | xiaosa</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="xiaosa">
-<meta property="og:url" content="https://xiaosarser.github.io/index.html">
+  <meta name="description" content="构造函数是什么？构造函数是C++类用来实例化对象的特殊成员函数。在C++中，当创造类的实例化对象的时候构造函数会被自动调用。和普通的成员函数相比，构造函数没有返回值，构造函数的函数名和类名一致。当程序没有指定构造函数的时候，编译器会自动合成无参的构造函数。C++大致有一下集中构造函数，默认构造函数，参数化构造函数，委托构造函数，拷贝构造函数，移动构造函数。1：默认构造函数在C++中，默认构造函数指">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++知识点之构造函数">
+<meta property="og:url" content="https://xiaosarser.github.io/2020/03/19/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="xiaosa">
+<meta property="og:description" content="构造函数是什么？构造函数是C++类用来实例化对象的特殊成员函数。在C++中，当创造类的实例化对象的时候构造函数会被自动调用。和普通的成员函数相比，构造函数没有返回值，构造函数的函数名和类名一致。当程序没有指定构造函数的时候，编译器会自动合成无参的构造函数。C++大致有一下集中构造函数，默认构造函数，参数化构造函数，委托构造函数，拷贝构造函数，移动构造函数。1：默认构造函数在C++中，默认构造函数指">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-19T07:17:05.000Z">
+<meta property="article:modified_time" content="2020-03-19T07:17:22.348Z">
 <meta property="article:author" content="xiaosa">
 <meta name="twitter:card" content="summary">
   
@@ -150,16 +154,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-C-知识点之构造函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-C-知识点之构造函数" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/19/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/">C++知识点之构造函数</a>
+    <h1 class="article-title" itemprop="name">
+      C++知识点之构造函数
     </h1>
   
 
@@ -195,6 +197,27 @@
       
 
       
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
     </div>
     <div class="article-info article-info-index">
       
@@ -202,16 +225,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/19/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://xiaosarser.github.io/2020/03/19/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/18/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E5%8F%98%E9%87%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++知识点之变量</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -231,152 +313,14 @@
 
 
 
-
   
-    <article id="post-C-知识点之变量" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/18/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E5%8F%98%E9%87%8F/">C++知识点之变量</a>
-    </h1>
   
 
-        
-        <a href="/2020/03/18/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E5%8F%98%E9%87%8F/" class="archive-article-date">
-  	<time datetime="2020-03-18T08:59:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1：全局变量与static变量<br>        全局变量的作用域为全局作用域，static变量的作用域为当前代码块，但是static变量存储在静态存储区，在当前代码再次调用该static变量的时候变量的值不变。全局变量的生存周期是在整个程序运行期间一直存在。全局静态变量是在全局变量前面加上static 关键字，全局静态变量也存储在静态存储区，全局静态变量的作用域为当前文件，生存周期为整个程序运行期间一直存在。<br>2：static函数与普通函数的区别<br>static函数在内存中只有一份，而普通函数默认是extern 的，每次调用该函数都在内存中维持其一份拷贝，static函数只在声明他的文件中可见，而普通函数在其他文件中也可见。<br>3：两个文件中声明两个同名变量<br>如果使用了extern 那就是静态的，在内存中只有一份， 如果没有，那就是模块的变量，在内存中有两份。<br>4：全局数组和局部数组的初始化</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">static int array_static_glogal[5];&#x2F;&#x2F;定义静态全局数组，未初始化数组成员</span><br><span class="line">int array_glogal[5];                 &#x2F;&#x2F;定义全局数组，但未初始化数组成员</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int array[5];</span><br><span class="line">    static int array_static[5];</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在以上代码中我们分别定义了全局数组，全局静态数组，局部数组和局部静态数组，运行程序可发现只有局部数组的未初始化的会用随机值填充，其他的未初始化都用0填充。<br>5：指针和引用的区别？<br>定义上看，指针是指向变量的地址的一个变量，而引用则是变量的别名，从大小来看，指针的大小由CPU的寻址位数决定，64为机器64位编译器一般为8，其他的位4，引用的大小和被引用的变量一样。也就是在同样的环境下指针的大小是一定的，引用的大小和被引用的变量一样。从初始化上看，指针可以位空指针，但是没有空引用，也就是引用必须被初始化。指针在运行时可以改变其所指向的值，引用一旦和某个对象绑定就不再改变。从内存上看，指针会分配内存区域，而引用不会，它仅仅是一个别名。在参数传递时，引⽤用会做类型检查，而指针不会。<br>6：C++中的强制转换<br>C++中一共有4中强制转换运算符，分别是const_cast<br>,reinterpret_cast和static_cast。<br>const_cast 运算符用于修改类型的 const / volatile 属性。除了 const 或 volatile 属性之外，目标类型必须与源类型相同。这种类型的转换主要是用来操作所传对象的 const 属性，可以加上 const 属性，也可以去掉 const 属性。<br>例如下面的代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">int fun(int* ptr) </span><br><span class="line">&#123; </span><br><span class="line">    return (*ptr + 10); </span><br><span class="line">&#125;   </span><br><span class="line">int main(void) </span><br><span class="line">&#123; </span><br><span class="line">    const int val &#x3D; 10; </span><br><span class="line">    const int *ptr &#x3D; &amp;val; </span><br><span class="line">    int *ptr1 &#x3D; const_cast &lt;int *&gt;(ptr); </span><br><span class="line">    cout &lt;&lt; fun(ptr1); </span><br><span class="line">    return 0; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>函数fun() 接受一个非常量指针，我们可以通过const_cast 将非常量指针转换为常量指针。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class student </span><br><span class="line">&#123; </span><br><span class="line">private: </span><br><span class="line">    int roll; </span><br><span class="line">public: </span><br><span class="line">    &#x2F;&#x2F; constructor </span><br><span class="line">    student(int r):roll(r) &#123;&#125; </span><br><span class="line">    &#x2F;&#x2F; A const function that changes roll with the help of const_cast </span><br><span class="line">    void fun() const</span><br><span class="line">    &#123; </span><br><span class="line">        ( const_cast &lt;student*&gt; (this) )-&gt;roll &#x3D; 5;    </span><br><span class="line">    &#125; </span><br><span class="line">    int getRoll()  &#123; return roll; &#125; </span><br><span class="line">&#125;;   </span><br><span class="line">int main(void) </span><br><span class="line">&#123; </span><br><span class="line">    student s(3); </span><br><span class="line">    cout &lt;&lt; &quot;Old roll number: &quot; &lt;&lt; s.getRoll() &lt;&lt; endl; </span><br><span class="line">    s.fun();   </span><br><span class="line">    cout &lt;&lt; &quot;New roll number: &quot; &lt;&lt; s.getRoll() &lt;&lt; endl;   </span><br><span class="line">    return 0; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在上面的例子中，类中的this指针实际上是常量指针，并且他指向常对象，如果我们通过this指针直接去改变类中对象的值是不可行的，通过const_cast 则可以做到这一点。<br>dynamic_cast 在运行时执行转换，验证转换的有效性。如果转换未执行，则转换失败，表达式 expr 被判定为 null。dynamic_cast 执行动态转换时，type 必须是类的指针、类的引用或者 void*，如果 type 是类指针类型，那么 expr 也必须是一个指针，如果 type 是一个引用，那个 expr 也必须是一个引用。dynamic_cast 主要用作类间的转换,将一个基类的指针或者引用转换到派生类，如果转换是安全的，返回新指针，如果转换不安全，则返回NULL。在类层次间进行上行转换时，dynamic_cast和static_cast的效果是一样的；在进行下行转换时，dynamic_cast具有类型检查的功能，比static_cast更安全。在进行类之间的上下转换时候，static_cast和reinterpret_cast运算符要么直接被编译器拒绝进行转换，要么就一定会得到相应的目标类型的值。 而dynamic_cast却会进行判别，确定源指针所指的内容，是否真的合适被目标指针接受。如果是否定的，那么dynamic_cast则会返回null。<br>reinterpret_cast 可以用于任意类型的转换，但是结果未定义。<br>7：如何修改const 常量<br>加上volatile 关键字告诉他是易变的，或者利用const_cast？<br>8：如何判断浮点型的大小<br>直接用==会出现错误，要利用精度来判断</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#define EPSILON 0.000001 &#x2F;&#x2F;根据精度需要</span><br><span class="line">if ( fabs( fa - fb) &lt; EPSILON )</span><br><span class="line">&#123;</span><br><span class="line">printf(&quot;fa&lt;fb\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/18/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E5%8F%98%E9%87%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/14/hello-world/">Hello World</a>
-    </h1>
   
 
-        
-        <a href="/2020/03/14/hello-world/" class="archive-article-date">
-  	<time datetime="2020-03-14T14:03:04.368Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/14/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
+
   
 
 
@@ -399,8 +343,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
