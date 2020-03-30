@@ -6,19 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xiaosarser.github.io">
-  <title>go和C++基础语法的不同点 | xiaosa</title>
+  <title>Tag: linux | xiaosa</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近学习go语言，发现go 比C++学起来要简单多了，其语法上有诸多不同，具体总结如下：1：类型go 语言中有以下几种基本类型bool,int,float32,float64,string,Pointer array,slice,struct,interface,map  complex64,complex128 uint8 uint16等。在基本数据类型上和C++区别不大。2：声明go语言声明变">
-<meta property="og:type" content="article">
-<meta property="og:title" content="go和C++基础语法的不同点">
-<meta property="og:url" content="https://xiaosarser.github.io/2020/03/30/go%E5%92%8CC-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E7%9A%84%E4%B8%8D%E5%90%8C%E7%82%B9/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="xiaosa">
+<meta property="og:url" content="https://xiaosarser.github.io/tags/linux/index.html">
 <meta property="og:site_name" content="xiaosa">
-<meta property="og:description" content="最近学习go语言，发现go 比C++学起来要简单多了，其语法上有诸多不同，具体总结如下：1：类型go 语言中有以下几种基本类型bool,int,float32,float64,string,Pointer array,slice,struct,interface,map  complex64,complex128 uint8 uint16等。在基本数据类型上和C++区别不大。2：声明go语言声明变">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-30T13:36:51.000Z">
-<meta property="article:modified_time" content="2020-03-30T13:37:23.304Z">
 <meta property="article:author" content="xiaosa">
-<meta property="article:tag" content="go">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="xiaosa" type="application/atom+xml">
@@ -155,196 +150,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-go和C-基础语法的不同点" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      go和C++基础语法的不同点
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/03/30/linux%E5%B8%B8%E8%A7%81%E7%9A%84%E5%91%BD%E4%BB%A4%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-03-30T13:40:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-30</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/03/30/linux%E5%B8%B8%E8%A7%81%E7%9A%84%E5%91%BD%E4%BB%A4%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/">linux常见的命令（持续更新）</a>
     </h1>
   
 
-        
-        <a href="/2020/03/30/go%E5%92%8CC-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E7%9A%84%E4%B8%8D%E5%90%8C%E7%82%B9/" class="archive-article-date">
-  	<time datetime="2020-03-30T13:36:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近学习go语言，发现go 比C++学起来要简单多了，其语法上有诸多不同，具体总结如下：<br>1：类型<br>go 语言中有以下几种基本类型bool,int,float32,float64,string,Pointer array,slice,struct,interface,map  complex64,complex128 uint8 uint16等。在基本数据类型上和C++区别不大。<br>2：声明<br>go语言声明变量的方式和C++完全不一样，例如声明一个整型，C++要这样做</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int a;</span><br></pre></td></tr></table></figure>
-<p>go 中是这样的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var a int</span><br></pre></td></tr></table></figure>
-<p>3:函数，C++声明函数的方式是返回值类型+函数名+函数参数+{}，go语言中声明函数的方式是func +函数名+函数参数+返回值类型，例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func add(x int ,y int) int&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意到函数参数的声明方式，变量在前，类型在后。<br>4：流程控制<br>go 中循环语法如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for i:&#x3D;0;i&lt;9;i++&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>go中利用短变量声明：=来指定变量的类型，有点类似于C++中的auto ,注意到循环参数没有括号，循环体的第一个{必须接在循环参数后面，而再C++中该声明如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for(int i&#x3D;0;i&lt;9;i++)&#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>go 中判断语句如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if v:&#x3D;math.Pow(x,n);v&lt;lim&#123;</span><br><span class="line">		return v</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<p>go 中厉害的是可以在判断参数里面定义判断的变量再接上判断的条件，在C++中是做不到在判断条件体内声明变量的。<br>go 中的swich case 和C++中没啥区别。<br>go 中没有while 语句，go 中的while 用for 来代替了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for true&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>5:类和对象<br>go 中似乎是没有类和对象这个语法的，但是我们依然能用go来完成一些面向对象的设计。go中的类由struct 和方法来实现，结构体中保存数据，其中首字母大写位公有，首字母小写为私有。每个方法和相应的struct绑定来完成面向对象的设计。例如下面的代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">type Vertex struct&#123;</span><br><span class="line">	X,Y float64</span><br><span class="line">&#125;</span><br><span class="line">func (v Vertex) abs(i float64) float64&#123;</span><br><span class="line">	return math.Sqrt(v.X*v.X+v.Y*v.Y+i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在该代码中声明一个Vertex 类型的结构体，然后为这个结构体绑定abs 方法，该方法同时也可以传递参数进去。那么怎样利用这个特性完成面向对象的设计呢？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">type Human struct &#123;</span><br><span class="line">    name string</span><br><span class="line">    age int</span><br><span class="line">    phone string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Student struct &#123;</span><br><span class="line">    Human &#x2F;&#x2F; 匿名字段</span><br><span class="line">    school string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Employee struct &#123;</span><br><span class="line">    Human &#x2F;&#x2F; 匿名字段</span><br><span class="line">    company string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 在 human 上面定义了一个 method</span><br><span class="line">func (h *Human) SayHi() &#123;</span><br><span class="line">    fmt.Printf(&quot;Hi, I am %s you can call me on %s\n&quot;, h.name, h.phone)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">    mark :&#x3D; Student&#123;Human&#123;&quot;Mark&quot;, 25, &quot;222-222-YYYY&quot;&#125;, &quot;MIT&quot;&#125;</span><br><span class="line">    sam :&#x3D; Employee&#123;Human&#123;&quot;Sam&quot;, 45, &quot;111-888-XXXX&quot;&#125;, &quot;Golang Inc&quot;&#125;</span><br><span class="line"></span><br><span class="line">    mark.SayHi()</span><br><span class="line">    sam.SayHi()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在该代码中，可以类似的认为Student 和Human继承了Human，从而可以通过Student来调用Human绑定的方法。同样，我们也可以重写SayHi()方法。<br>6：指针<br>在go 中也是有指针的，go 中指针的声明方法如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i * int</span><br></pre></td></tr></table></figure>
-<p>值得注意的是，和C++不同，go 中的指针是不能进行运算的。<br>以上就是总结的几个简单的不同点，以后有想到的再补充。</p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">go</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://xiaosarser.github.io/2020/03/30/go%E5%92%8CC-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E7%9A%84%E4%B8%8D%E5%90%8C%E7%82%B9/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2020/03/30/linux%E5%B8%B8%E8%A7%81%E7%9A%84%E5%91%BD%E4%BB%A4%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          linux常见的命令（持续更新）
-        
-      </div>
-    </a>
   
   
-    <a href="/2020/03/19/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">C++知识点之函数重载</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -367,9 +226,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
