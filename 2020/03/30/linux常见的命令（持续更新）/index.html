@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="https://xiaosarser.github.io">
   <title>linux常见的命令（持续更新） | xiaosa</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1：移动命令 mvex: mv &#x2F;usr&#x2F;local&#x2F;te.txt &#x2F;download2: 解压命令tar -zxvf filename.tar.gz3：查看环境变量env4：查看PATHecho $PATH5：修改PATHexport PATH&#x3D;$PATH:&#x2F;opt&#x2F;au1200_rm&#x2F;build_tools&#x2F;bin6：列出当前文件下下的所有文件ls7:设置root 权限su">
+  <meta name="description" content="1：移动命令 mvex: mv &#x2F;usr&#x2F;local&#x2F;te.txt &#x2F;download2: 解压命令tar -zxvf filename.tar.gz3：查看环境变量env4：查看PATHecho $PATH5：修改PATHexport PATH&#x3D;$PATH:&#x2F;opt&#x2F;au1200_rm&#x2F;build_tools&#x2F;bin6：列出当前文件下下的所有文件ls7:设置root 权限su8：安装mysqlw">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux常见的命令（持续更新）">
 <meta property="og:url" content="https://xiaosarser.github.io/2020/03/30/linux%E5%B8%B8%E8%A7%81%E7%9A%84%E5%91%BD%E4%BB%A4%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/index.html">
 <meta property="og:site_name" content="xiaosa">
-<meta property="og:description" content="1：移动命令 mvex: mv &#x2F;usr&#x2F;local&#x2F;te.txt &#x2F;download2: 解压命令tar -zxvf filename.tar.gz3：查看环境变量env4：查看PATHecho $PATH5：修改PATHexport PATH&#x3D;$PATH:&#x2F;opt&#x2F;au1200_rm&#x2F;build_tools&#x2F;bin6：列出当前文件下下的所有文件ls7:设置root 权限su">
+<meta property="og:description" content="1：移动命令 mvex: mv &#x2F;usr&#x2F;local&#x2F;te.txt &#x2F;download2: 解压命令tar -zxvf filename.tar.gz3：查看环境变量env4：查看PATHecho $PATH5：修改PATHexport PATH&#x3D;$PATH:&#x2F;opt&#x2F;au1200_rm&#x2F;build_tools&#x2F;bin6：列出当前文件下下的所有文件ls7:设置root 权限su8：安装mysqlw">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-30T13:40:31.000Z">
-<meta property="article:modified_time" content="2020-03-30T13:43:55.959Z">
+<meta property="article:modified_time" content="2020-04-02T07:01:33.104Z">
 <meta property="article:author" content="xiaosa">
 <meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
@@ -175,7 +175,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1：移动命令 mv<br>ex: mv /usr/local/te.txt /download<br>2: 解压命令<br>tar -zxvf filename.tar.gz<br>3：查看环境变量<br>env<br>4：查看PATH<br>echo $PATH<br>5：修改PATH<br>export PATH=$PATH:/opt/au1200_rm/build_tools/bin<br>6：列出当前文件下下的所有文件<br>ls<br>7:设置root 权限<br>su</p>
+        <p>1：移动命令 mv<br>ex: mv /usr/local/te.txt /download<br>2: 解压命令<br>tar -zxvf filename.tar.gz<br>3：查看环境变量<br>env<br>4：查看PATH<br>echo $PATH<br>5：修改PATH<br>export PATH=$PATH:/opt/au1200_rm/build_tools/bin<br>6：列出当前文件下下的所有文件<br>ls<br>7:设置root 权限<br>su<br>8：安装mysql<br>wget <a href="http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm" target="_blank" rel="noopener">http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm</a><br>rpm -ivh mysql-community-release-el7-5.noarch.rpm<br>yum update<br>yum install mysql-server<br>9:初始化mysql<br>mysqld –initialize<br>10:启动mysql<br>systemctl start mysqld<br>11:查看mysql运行状态<br>systemctl status mysqld<br>12：验证mysql安装<br>mysqladmin –version<br>13：运行mysql<br>mysql<br>14：设置密码<br>mysqladmin -u root password “new_password”;<br>15：连接到mysql服务器<br>mysql -u root -p<br>16：关闭mysql服务器<br>./mysqladmin -u root -p shutdown<br>17：创建数据库<br>mysqladmin -u root -p create name<br>18:删除数据库<br>musqladmin -u root -p drop name<br>19:选择数据库<br>mysql -u root -password<br>mysql&gt;use name<br>20:新建数据表<br>CREATE TABLE IF NOT EXISTS <code>runoob_tbl</code>(<br>   <code>runoob_id</code> INT UNSIGNED AUTO_INCREMENT,<br>   <code>runoob_title</code> VARCHAR(100) NOT NULL,<br>   <code>runoob_author</code> VARCHAR(40) NOT NULL,<br>   <code>submission_date</code> DATE,<br>   PRIMARY KEY ( <code>runoob_id</code> )<br>)ENGINE=InnoDB DEFAULT CHARSET=utf8;<br>21：删除数据表<br>DROP TABLE table_name ;<br>22：查询<br>ex :SELECT * FROM TABLENAME WHERE FIELD=’TARGET’<br>使用BINARY 限定字符串相比考虑大小写<br>23:</p>
 
       
 
@@ -279,6 +279,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/04/04/go-mysql%E7%9A%84%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          go+mysql的增删改查
+        
+      </div>
+    </a>
   
   
     <a href="/2020/03/30/go%E5%92%8CC-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E7%9A%84%E4%B8%8D%E5%90%8C%E7%82%B9/" id="article-nav-older" class="article-nav-link-wrap">
@@ -409,6 +418,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">go mysql</a>
               </li>
              
               <li class="article-tag-list-item">

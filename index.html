@@ -152,6 +152,88 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-go-mysql的增删改查" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/04/go-mysql%E7%9A%84%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/">go+mysql的增删改查</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/04/go-mysql%E7%9A%84%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/" class="archive-article-date">
+  	<time datetime="2020-04-04T13:36:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>go语言实现mysql的增删改查主要靠mysql驱动来实现。<br>1：安装mysql驱动，<br>go get -u github.com/go-sql-driver/mysql，如果由于网络的原因实现不了这个可以将github.com/go-sql-driver/mysql 下载下来，然后将其move到GOPATH目录下面，然后执行 go install mysql。<br>2：go和数据库的增删改查<br>1:连接数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import (</span><br><span class="line">	&quot;database&#x2F;sql&quot;</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;strings&quot;</span><br><span class="line">	_ &quot;mysql&quot;</span><br><span class="line">)</span><br><span class="line">const (</span><br><span class="line">	userName &#x3D; &quot;root&quot;</span><br><span class="line">	password &#x3D; &quot;xiaosa0039&quot;</span><br><span class="line">	ip &#x3D; &quot;127.0.0.1&quot;</span><br><span class="line">	port &#x3D; &quot;3306&quot;</span><br><span class="line">	dbName &#x3D; &quot;testgo&quot;</span><br><span class="line">)</span><br><span class="line">func main()&#123;</span><br><span class="line">	path :&#x3D; strings.Join([]string&#123;userName, &quot;:&quot;, password, &quot;@tcp(&quot;,ip, &quot;:&quot;, port, &quot;)&#x2F;&quot;, dbName, &quot;?charset&#x3D;utf8&quot;&#125;, &quot;&quot;)</span><br><span class="line">	db, err :&#x3D; sql.Open(&quot;mysql&quot;, path)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以采用const 将数据库登录信息保存下来，然后拼接成为字符串，然后登录。<br>2：增加数据<br>增加数据大致可以分成以下三个部分：<br>1：准备SQL语句。<br>2：执行SQL语句。<br>3：获取最后一个自增ID</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">stmt, err :&#x3D; db.Prepare(&quot;INSERT userinfo SET username&#x3D;?,department&#x3D;?,created&#x3D;?&quot;)</span><br><span class="line">checkErr(err)</span><br><span class="line">res, err :&#x3D; stmt.Exec(&quot;astaxie&quot;, &quot;研发部门&quot;, &quot;2012-12-09&quot;)</span><br><span class="line">checkErr(err)</span><br><span class="line">id, err :&#x3D; res.LastInsertId()</span><br><span class="line">checkErr(err)</span><br></pre></td></tr></table></figure>
+<p>3：修改数据也分为三个部分<br>1：准备SQL语句<br>2：执行SQL语句<br>3：获取最后一个自增ID</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">stmt, err &#x3D; db.Prepare(&quot;update userinfo set username&#x3D;? where uid&#x3D;?&quot;)</span><br><span class="line"> checkErr(err)</span><br><span class="line"> res, err &#x3D; stmt.Exec(&quot;astaxieupdate&quot;, id)</span><br><span class="line"> checkErr(err)</span><br><span class="line"> affect, err :&#x3D; res.RowsAffected()</span><br><span class="line"> checkErr(err)</span><br><span class="line"> fmt.Println(affect)</span><br></pre></td></tr></table></figure>
+<p>4：删除数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">stmt, err &#x3D; db.Prepare(&quot;delete from userinfo where uid&#x3D;?&quot;)</span><br><span class="line">checkErr(err)</span><br><span class="line">res, err &#x3D; stmt.Exec(id)</span><br><span class="line">checkErr(err)</span><br><span class="line">affect, err &#x3D; res.RowsAffected()</span><br><span class="line">checkErr(err)</span><br></pre></td></tr></table></figure>
+<p>5：查询数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">rows, err :&#x3D; db.Query(&quot;SELECT * FROM userinfo&quot;)</span><br><span class="line"> checkErr(err)</span><br><span class="line"></span><br><span class="line"> for rows.Next() &#123;</span><br><span class="line">     var uid int</span><br><span class="line">     var username string</span><br><span class="line">     var department string</span><br><span class="line">     var created string</span><br><span class="line">     err &#x3D; rows.Scan(&amp;uid, &amp;username, &amp;department, &amp;created)</span><br><span class="line">     checkErr(err)</span><br><span class="line">     fmt.Println(uid)</span><br><span class="line">     fmt.Println(username)</span><br><span class="line">     fmt.Println(department)</span><br><span class="line">     fmt.Println(created)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">go mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/04/go-mysql%E7%9A%84%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-linux常见的命令（持续更新）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -172,7 +254,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1：移动命令 mv<br>ex: mv /usr/local/te.txt /download<br>2: 解压命令<br>tar -zxvf filename.tar.gz<br>3：查看环境变量<br>env<br>4：查看PATH<br>echo $PATH<br>5：修改PATH<br>export PATH=$PATH:/opt/au1200_rm/build_tools/bin<br>6：列出当前文件下下的所有文件<br>ls<br>7:设置root 权限<br>su</p>
+        <p>1：移动命令 mv<br>ex: mv /usr/local/te.txt /download<br>2: 解压命令<br>tar -zxvf filename.tar.gz<br>3：查看环境变量<br>env<br>4：查看PATH<br>echo $PATH<br>5：修改PATH<br>export PATH=$PATH:/opt/au1200_rm/build_tools/bin<br>6：列出当前文件下下的所有文件<br>ls<br>7:设置root 权限<br>su<br>8：安装mysql<br>wget <a href="http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm" target="_blank" rel="noopener">http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm</a><br>rpm -ivh mysql-community-release-el7-5.noarch.rpm<br>yum update<br>yum install mysql-server<br>9:初始化mysql<br>mysqld –initialize<br>10:启动mysql<br>systemctl start mysqld<br>11:查看mysql运行状态<br>systemctl status mysqld<br>12：验证mysql安装<br>mysqladmin –version<br>13：运行mysql<br>mysql<br>14：设置密码<br>mysqladmin -u root password “new_password”;<br>15：连接到mysql服务器<br>mysql -u root -p<br>16：关闭mysql服务器<br>./mysqladmin -u root -p shutdown<br>17：创建数据库<br>mysqladmin -u root -p create name<br>18:删除数据库<br>musqladmin -u root -p drop name<br>19:选择数据库<br>mysql -u root -password<br>mysql&gt;use name<br>20:新建数据表<br>CREATE TABLE IF NOT EXISTS <code>runoob_tbl</code>(<br>   <code>runoob_id</code> INT UNSIGNED AUTO_INCREMENT,<br>   <code>runoob_title</code> VARCHAR(100) NOT NULL,<br>   <code>runoob_author</code> VARCHAR(40) NOT NULL,<br>   <code>submission_date</code> DATE,<br>   PRIMARY KEY ( <code>runoob_id</code> )<br>)ENGINE=InnoDB DEFAULT CHARSET=utf8;<br>21：删除数据表<br>DROP TABLE table_name ;<br>22：查询<br>ex :SELECT * FROM TABLENAME WHERE FIELD=’TARGET’<br>使用BINARY 限定字符串相比考虑大小写<br>23:</p>
 
       
 
@@ -916,6 +998,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">go mysql</a>
               </li>
              
               <li class="article-tag-list-item">
