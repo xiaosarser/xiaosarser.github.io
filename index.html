@@ -152,6 +152,98 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="java-核心类库1" class="article article-type-java  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/11/%E6%A0%B8%E5%BF%83%E7%B1%BB%E5%BA%931/">核心类库1</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/11/%E6%A0%B8%E5%BF%83%E7%B1%BB%E5%BA%931/" class="archive-article-date">
+  	<time datetime="2020-05-11T00:43:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1：JAVA 核心类库<br>1.1：JAVA Object 对象<br>Object 类是所有Java类的直接子类或者间接子类，也就是Object 类类是所有Java类的超类。Object 对象里面主要有以下几种方法：<br>1.1.1：equals 方法<br>Equals 方法用来比较两个对象的地址是否一致，如果一致返回true,不一致返回false。如果要比较两个对象的内容是否相同，则必须要重写该方法。例如下面的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class Student &#123;</span><br><span class="line">    private int id;</span><br><span class="line">    private String name;</span><br><span class="line">    public int getId() &#123;</span><br><span class="line">        return id;</span><br><span class="line">    &#125;</span><br><span class="line">    public void setId(int id) &#123;</span><br><span class="line">        this.id &#x3D; id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Student(int id, String name) &#123;</span><br><span class="line">        this.id &#x3D; id;</span><br><span class="line">        this.name &#x3D; name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">public class StudentTest &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args)</span><br><span class="line">    &#123;</span><br><span class="line">        Student s1&#x3D;new Student(1,&quot;xiao&quot;);</span><br><span class="line">        Student s2&#x3D;new Student(2,&quot;sa&quot;);</span><br><span class="line">        boolean b1&#x3D;s1.equals(s2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在Test 类中，由于s1 和s2 在内存中的地址不一样，因此b1 是false。如果把test类改成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> Student s1&#x3D;new Student(1,&quot;xiao&quot;);</span><br><span class="line">Student s2&#x3D;s1;</span><br><span class="line">boolean b1&#x3D;s1.equals(s2);</span><br></pre></td></tr></table></figure>
+<p>那么b1 就是true。<br>如果要比较两个对象之间内容是否一致，那么必须重写equals 方法，由于equals<br>方法属于Object 对象，而所有的类都直接或者间接的继承自该类，所以完全可以重写，比如我们要根据学号来判断两者是否相等：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public boolean equals(Object o)</span><br><span class="line">&#123;</span><br><span class="line">    Student s1&#x3D;(Student)o;</span><br><span class="line">    return this.getId()&#x3D;&#x3D;s1.getId();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Student s1&#x3D;new Student(1,&quot;xiao&quot;);</span><br><span class="line">Student s2&#x3D;new Student(1,&quot;sa&quot;);</span><br><span class="line">boolean b1&#x3D;s1.equals(s2</span><br></pre></td></tr></table></figure>
+
+<p> 由于两个对象的学号相同，因此在重写equals 方法以后会返回true。如果要根据String 类型的姓名来比较两者是否相等呢？是否能直接写<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public boolean equals(Object o)</span><br><span class="line">&#123;</span><br><span class="line">    Student s1&#x3D;(Student)o;</span><br><span class="line">    return this.getName()&#x3D;&#x3D;s1.getName();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>这样写可以，但是不完美，因为String 类型本质也是一个类，因此直接==实际上还是比较两者的地址，但是String 中有官方提供的equals 方法：<br>所以上面代码要写成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public boolean equals(Object o)</span><br><span class="line">&#123;</span><br><span class="line">    Student s1&#x3D;(Student)o;</span><br><span class="line">    return this.getName().equals(s1.getName())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>equals 有如下性质：自反性，一致性和对称性。自反性是指对于任意对象，x.equals(x) 都是true。对称性是指a.equals(b) 和b.euqals(a) 一样。一致性是指equals 和hashCode 要保持一致，既两个对象的equals 不一样，那么其hashCode 值也应该不一样，因为hashCode的本质就是内存地址的编码。<br>1.1.2：hashCode<br>HashCode() 函数返回其对象的内存地址的编码，因此如果在重写equals函数以后也要重写HashCode() 函数来保证一致性，至于怎么保证一致性可以自己定义，只要保证equals 是false 以后其HashCode() 值不一样就可以了。在上面的例子中，我们利用学号来比较两个对象，学号相同两个对象认为一样，但是其hashCode 不一样，这样我们可以利用如下方法来重写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public int hashCode() &#123;</span><br><span class="line">    return getId();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>1.1.3 toString()<br>ToString 方法返回包名+类名+hashCode的16进制字符串。比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Student s1&#x3D;new Student(1,&quot;xiao&quot;);</span><br><span class="line">Student s2&#x3D;new Student(1,&quot;xiao&quot;);</span><br><span class="line">boolean b1&#x3D;s1.equals(s2);</span><br><span class="line">System.out.println(s1.toString());</span><br></pre></td></tr></table></figure>
+<p>返回的就是<br>module3_task1.Student@1<br>值得之注意的一点是，对象在调用print和println时候会自动调用该方法，也就是将对象直接打印出来的话和上面的值是一样的。<br>1.2：String 类<br>String 类是JAVA中操作不变长字符串的类，String 是final 的，意味着它不能被继承。从JDK1.9开始便不再使用char[] 来定义String类二十用byte[] 以此来节约内存空间。String 类描述的是字符串常量，从String 类的源码中可以看到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private final byte[] value;</span><br></pre></td></tr></table></figure>
+<p>String 的值被定义成了final 的，意味着String 类的值是不可变常量，其存储在方法区。由于String 描述的是不可变的常量，因此JVM将首次出现的字符串定义在常量池中，下次再碰到相同的字符串时候，就不再单独开辟一块新的空间而是直接使用常量池中存在的字符出。String 大致有以下几种构造方法:<br>1.2.1:String()<br>该方法构造一个空字符串而不是空对象。<br>1.2.2：String(byte[],int a,int len)  和String(byte[])<br>该方法从byte 数组的第a 个元素开始的len 长度构造字符串。<br>1.2 .3String(char[]) String(char[],int a ,int len)<br>该方法从char 数组中构造字符串。<br>1.2.4：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String str&#x3D;”hello” 和String str1&#x3D;new String(“hello”) 这二者是有区别的，str 定义在常量池中，str1定义在堆区中。</span><br><span class="line">String str&#x3D;&quot;hello&quot;;</span><br><span class="line">String str1&#x3D;new String(&quot;hello&quot;);</span><br><span class="line">System.out.println(str&#x3D;&#x3D;str1);</span><br><span class="line">System.out.println(str.equals(str1));</span><br></pre></td></tr></table></figure>
+<p>例如上述代码分别输出false 和true 这是因为==比较的是对象内存地址，而equals 经由String 类重写已经是比较两者的内容了。String 类的其他方法在帮助文档中都能查到。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/11/%E6%A0%B8%E5%BF%83%E7%B1%BB%E5%BA%931/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-go-web-框架——day1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -879,87 +971,6 @@
 
 
   
-    <article id="post-C-知识点之构造函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/19/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/">C++知识点之构造函数</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/19/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" class="archive-article-date">
-  	<time datetime="2020-03-19T07:17:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>构造函数是什么？构造函数是C++类用来实例化对象的特殊成员函数。在C++中，当创造类的实例化对象的时候构造函数会被自动调用。和普通的成员函数相比，构造函数没有返回值，构造函数的函数名和类名一致。当程序没有指定构造函数的时候，编译器会自动合成无参的构造函数。C++大致有一下集中构造函数，默认构造函数，参数化构造函数，委托构造函数，拷贝构造函数，移动构造函数。<br>1：默认构造函数<br>在C++中，默认构造函数指的是一个能被无参调用（包含参数有默认值的函数）的函数，包括自己定义的默认构造函数和编译器合成的默认构造函数，例如在下面的代码中。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Construct</span><br><span class="line">&#123;</span><br><span class="line">    Construct()&#123;&#125;&#x2F;&#x2F;默认构造函数</span><br><span class="line">    Construct(int i&#x3D;0,int j&#x3D;0)&#123;&#125;&#x2F;&#x2F;默认构造函数</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>两个构造函数一个是无参的，一个是有参但是参数有默认值的，都是默认的构造函数。如果类的设计者没有写任何的构造函数，那么编译器一定会合成默认的构造函数吗？不是的，只有当编译器被需要的时候才会合成默认的构造函数。关于什么时候被需要，这里不展开写，总结起来就是调用对象成员或基类的默认构造函数或者 为对象初始化虚表指针与虚基类指针。<br>2：带参构造函数<br>带参数的构造函数可以用来初始化类的成员变量，例如下面的代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Construct</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">    Construct(int i):num(i)&#123;&#125;</span><br><span class="line">public:</span><br><span class="line">    int num;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>当利用带参构造函数实例化对象的时候类的成员也被初始化了。<br>3：委托构造函数<br>在C++primer的定义中，一个委托构造函数使用它所属的类的其他构造函数执行自己的初始化过程，或者说它把自己的一些（或者全部）职责委托给了其他构造函数。一个委托构造函数应该有着最大数量的参数以构造出完整的对象。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class A</span><br><span class="line">&#123;</span><br><span class="line">private:</span><br><span class="line">    int a;</span><br><span class="line">    int b;</span><br><span class="line">    char c;</span><br><span class="line"> public:</span><br><span class="line">    A(int num1,int num2,int c1):a(num1),b(num2),c(c1)&#123;&#125;</span><br><span class="line">    A(int num1,char c1):A(num1,0,c1)&#123;&#125;&#x2F;&#x2F;委托上一个构造函数</span><br><span class="line">    A(int num0):A(num0,&#39;&#39;)&#123;&#125;&#x2F;&#x2F;委托上一个构造函数</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>注意，被委托的构造函数应该具有最大数量的参数。委托构造函数的作用是目的是简化构造函数的书写，提高代码的可维护性，避免代码冗余膨胀。<br>4：拷贝构造函数<br>拷贝构造函数是一种特殊的构造函数，它在创建对象时，是使用同一类中之前创建的对象来初始化新创建的对象。构造函数的原型是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ClassName (const ClassName &amp;old_obj);</span><br></pre></td></tr></table></figure>
-<p> 下面是一个简单的拷贝构造函数的例子</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class Point</span><br><span class="line">&#123;</span><br><span class="line">private:</span><br><span class="line">    int x;</span><br><span class="line">    int y;</span><br><span class="line">public:</span><br><span class="line">    Point(int x1,int y1):x(x1),y(y1)&#123;&#125;</span><br><span class="line">    Point(const Point&amp; p2)</span><br><span class="line">    &#123;</span><br><span class="line">        x&#x3D;p2.x;</span><br><span class="line">        y&#x3D;p2.y;</span><br><span class="line">    &#125;</span><br><span class="line">    int getX()</span><br><span class="line">    &#123;</span><br><span class="line">        return x;</span><br><span class="line">    &#125;</span><br><span class="line">    int getY()</span><br><span class="line">    &#123;</span><br><span class="line">        return y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">int main(void) </span><br><span class="line">&#123; </span><br><span class="line">    Point p1(10,5);</span><br><span class="line">    Point p2(p1);</span><br><span class="line">    cout&lt;&lt;p2.getX()&lt;&lt;&quot; &quot;&lt;&lt;p2.getY()&lt;&lt;endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在该例子中用Point的实例化对象p1去初始化p2。那么在C++中，什么时候会调用拷贝构造函数呢？<br>在C++中，在以下4中情况下会调用拷贝构造函数：<br>1：当类的对象由值返回时。<br>2：当类的对象被当成参数传递给函数时<br>3：当一个对象基于相同类的另一个对象构造时。<br>4：当编译器产生一个临时对象时。<br>什么时候需要用户定义的拷贝构造函数？如果没有用户定义的拷贝构造函数，编译器通常会合成默认的拷贝构造函数用来在对象之间进行成员拷贝。当一个对象有指针或者任何运行时分配的资源例如文件句柄和网络连接的时候才需要用户定义的拷贝欸构造函数。编译器默认的合成拷贝构造函数通常是浅拷贝，只有用户定义的拷贝构造函数才是深拷贝。<br>5：拷贝与赋值运算符<br>拷贝构造发生在初始化对象的时候发生，如果对象已经初始化了，只是要给他一个新的值，那么即使赋值操作而不是拷贝操作来了，例如下面的例子</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MyClass t1, t2; </span><br><span class="line">MyClass t3 &#x3D; t1;  &#x2F;&#x2F; ----&gt; (1) </span><br><span class="line">t2 &#x3D; t1;          &#x2F;&#x2F; -----&gt; (2)</span><br></pre></td></tr></table></figure>
-<p>1是拷贝，2是赋值操作。下面通过一个例子说明拷贝构造函数为什么必须是引用类型；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">class Point</span><br><span class="line">&#123;</span><br><span class="line">private:</span><br><span class="line">    int x;</span><br><span class="line">    int y;</span><br><span class="line">public:</span><br><span class="line">    Point()</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;&quot;构造对象&quot;&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    Point(const Point&amp; p2)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;&quot;调用拷贝构造函数&quot;&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    void fun(Point p1)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;&quot;对象作为参数传递给函数&quot;&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int main(void) </span><br><span class="line">&#123; </span><br><span class="line">    Point p1;</span><br><span class="line">    Point p2(p1);</span><br><span class="line">    p2.fun(p1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>程序输出的结果是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">构造对象</span><br><span class="line">调用拷贝构造函数</span><br><span class="line">调用拷贝构造函数</span><br><span class="line">对象作为参数传递给函数</span><br></pre></td></tr></table></figure>
-<p>首先来分析一下Point(const Point&amp; p2)；和Point p2(p1);这句话，吐过不是传引用的话，那么他的 含义其实是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Point p2&#x3D;p1;</span><br></pre></td></tr></table></figure>
-<p>由于p2并没有被构造出来，所以又会调用构造函数来进行构造造成程序无止境递归从而造成程序崩溃。<br>5：移动构造函数<br> 参见<a href="https://www.jianshu.com/p/cb82c8b72c6b" target="_blank" rel="noopener">https://www.jianshu.com/p/cb82c8b72c6b</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/19/C-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1074,6 +1085,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">go, mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
               </li>
             
             <div class="clearfix"></div>
